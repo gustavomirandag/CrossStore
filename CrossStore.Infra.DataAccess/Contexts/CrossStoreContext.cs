@@ -14,6 +14,7 @@ namespace CrossStore.Infra.DataAccess.Contexts
         public CrossStoreContext(string dbConnectionString)
         {
             this.dbConnectionString = dbConnectionString;
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

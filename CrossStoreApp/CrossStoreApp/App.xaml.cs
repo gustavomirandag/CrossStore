@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CrossStore.Domain.Services;
+using CrossStore.Infra.DataAccess.Repositories.Products;
+using CrossStoreApp.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,11 +9,13 @@ namespace CrossStoreApp
 {
     public partial class App : Application
     {
+        public static ProductService Service { get; set; }
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            Service = new ProductService(new AzureSqlServerProductsRepository());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

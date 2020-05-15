@@ -4,12 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="CrossStoreApp.MainPage">
+             x:Class="CrossStoreApp.Views.MainPage">
 
     <StackLayout x:Name="StackLayoutContent">
         <StackLayout x:Name="StackLayoutProducts">
         </StackLayout>
-        <Button x:Name="BtnCliqueAqui" Text="Clique aqui" Clicked="BtnCliqueAqui_Clicked" />
+        <Button x:Name="BtAddProduct" Text="Add Product" Clicked="BtAddProduct_Clicked" />
     </StackLayout>
 
 </ContentPage>
