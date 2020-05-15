@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CrossStoreApp.Models
+namespace CrossStore.Domain.Entities
 {
-    public class Product
+    public class Product : EntityBase<Guid>
     {
-        public Guid Id { get; set; }
         public String Name { get; set; }
         public String Photo { get; set; }
         public Decimal Price { get; set; }
