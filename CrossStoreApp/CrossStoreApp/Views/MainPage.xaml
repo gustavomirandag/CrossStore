@@ -5,11 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CrossStoreApp.Views.MainPage">
-
-    <StackLayout x:Name="StackLayoutContent">
-        <StackLayout x:Name="StackLayoutProducts">
-        </StackLayout>
-        <Button x:Name="BtAddProduct" Text="Add Product" Clicked="BtAddProduct_Clicked" />
+    <StackLayout>
+        <ScrollView Orientation="Vertical">
+            <StackLayout x:Name="StackLayoutContent">
+                <FlexLayout x:Name="FlexLayoutProducts"  Wrap="Wrap" Direction="Row" Padding="20">
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+        <Button x:Name="BtAddProduct" Text="Add Product" Clicked="BtAddProduct_Clicked" HorizontalOptions="CenterAndExpand" />
     </StackLayout>
 
 </ContentPage>

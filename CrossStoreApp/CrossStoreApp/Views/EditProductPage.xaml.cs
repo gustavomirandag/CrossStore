@@ -19,12 +19,13 @@ namespace CrossStoreApp.Views
         {
             InitializeComponent();
             this.product = product;
+            FillFields(product);
         }
 
         private void FillFields(Product product)
         {
             EntryName.Text = product.Name;
-            EntryPhoto.Text = product.Photo;
+            EntryPhoto.Text = product.Photo ?? "";
             EntryPrice.Text = product.Price.ToString();
         }
 

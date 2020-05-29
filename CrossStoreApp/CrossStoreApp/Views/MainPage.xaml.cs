@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Markup;
 
 namespace CrossStoreApp.Views
 {
@@ -31,22 +32,44 @@ namespace CrossStoreApp.Views
 
         public void ListProducts(IEnumerable<Product> products)
         {
-            StackLayoutProducts.Children.Clear();
+            FlexLayoutProducts.Children.Clear();
 
             foreach (var product in products)
             {
+                var productStackLayout = new StackLayout();
+                productStackLayout.WidthRequest = 300;
+                productStackLayout.HeightRequest = 400;
+
                 var labelName = new Label();
-                labelName.Text = $"{product.Name} - {product.Price}";
+                labelName.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                labelName.VerticalOptions = LayoutOptions.Start;
+                labelName.Text = product.Name;
 
-                var image = new Image();
+                productStackLayout.Children.Add(labelName);
+
+                var image = new ImageButton();
+                image.HorizontalOptions = LayoutOptions.Center;
                 if (product.Photo != null)
-                {
                     image.Source = ImageSource.FromUri(new Uri(product.Photo));
-                    StackLayoutProducts.Children.Add(image);
-                }
+                else
+                    image.Source = ImageSource.FromUri(new Uri("https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png"));
+                image.Clicked += async (sender, args) => await EditProductAsync(product);
+                productStackLayout.Children.Add(image);
 
-                StackLayoutProducts.Children.Add(labelName);
+                var labelPrice = new Label();
+                labelPrice.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                labelPrice.VerticalOptions = LayoutOptions.End;
+                labelPrice.Text = product.Price.ToString();
+
+                productStackLayout.Children.Add(labelPrice);
+
+                FlexLayoutProducts.Children.Add(productStackLayout);
             }
+        }
+
+        private async Task EditProductAsync(Product product)
+        {
+            await Navigation.PushModalAsync(new EditProductPage(product), true);
         }
 
         private void BtAddProduct_Clicked(object sender, EventArgs e)
