@@ -11,14 +11,24 @@ using Xamarin.Forms.Xaml;
 namespace CrossStoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddProductPage : ContentPage
+    public partial class EditProductPage : ContentPage
     {
-        public AddProductPage()
+        private Product product;
+
+        public EditProductPage(Product product)
         {
             InitializeComponent();
+            this.product = product;
         }
 
-        private void BtnAdd_Clicked(object sender, EventArgs e)
+        private void FillFields(Product product)
+        {
+            EntryName.Text = product.Name;
+            EntryPhoto.Text = product.Photo;
+            EntryPrice.Text = product.Price.ToString();
+        }
+
+        private void BtnUpdate_Clicked(object sender, EventArgs e)
         {
             var name = EntryName.Text;
             var photo = EntryPhoto.Text;
@@ -28,15 +38,12 @@ namespace CrossStoreApp.Views
                 DisplayAlert("Invalid Price", "Please, type a valid price", "Ok");
                 return;
             }
-                
-            var product = new Product
-            {
-                Name = name,
-                Photo = photo,
-                Price = price
-            };
 
-            App.Service.AddProduct(product);
+            product.Name = name;
+            product.Photo = photo;
+            product.Price = price;
+
+            App.Service.UpdateProduct(product);
             Navigation.PopModalAsync(true);
         }
 

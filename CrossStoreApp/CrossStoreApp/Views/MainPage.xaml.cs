@@ -21,20 +21,31 @@ namespace CrossStoreApp.Views
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             ListProducts(App.Service.GetAllProducts());
         }
 
-        private void ListProducts(IEnumerable<Product> products)
+        public void ListProducts(IEnumerable<Product> products)
         {
+            StackLayoutProducts.Children.Clear();
 
-            foreach(var product in products)
+            foreach (var product in products)
             {
-                var lblName = new Label
+                var labelName = new Label();
+                labelName.Text = $"{product.Name} - {product.Price}";
+
+                var image = new Image();
+                if (product.Photo != null)
                 {
-                    //Text = product.Name + " - " + product.Price
-                    Text = $"{product.Name} - {product.Price}"
-                };
-                StackLayoutProducts.Children.Add(lblName);
+                    image.Source = ImageSource.FromUri(new Uri(product.Photo));
+                    StackLayoutProducts.Children.Add(image);
+                }
+
+                StackLayoutProducts.Children.Add(labelName);
             }
         }
 

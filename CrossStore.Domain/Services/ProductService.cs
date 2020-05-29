@@ -28,5 +28,17 @@ namespace CrossStore.Domain.Services
         {
             return repository.ReadAll();
         }
+
+        public void UpdateProduct(Product product)
+        {
+            repository.Update(product);
+            repository.SaveChanges();
+        }
+
+        public void DeleteProduct(Guid productId)
+        {
+            repository.Delete(productId);
+            repository.SaveChanges();
+        }
     }
 }
