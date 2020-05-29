@@ -1,4 +1,6 @@
 ﻿using CrossStore.Domain.Entities;
+using CrossStore.Domain.Services;
+using CrossStore.Infra.DataAccess.Repositories.Products;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +17,7 @@ namespace CrossStoreApp.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+
         public MainPage()
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace CrossStoreApp.Views
 
         private void ListProducts(IEnumerable<Product> products)
         {
+
             foreach(var product in products)
             {
                 var lblName = new Label

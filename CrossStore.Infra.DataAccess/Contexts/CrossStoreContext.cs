@@ -11,6 +11,7 @@ namespace CrossStore.Infra.DataAccess.Contexts
         private readonly string dbConnectionString;
         public DbSet<Product> Products { get; set; }
 
+
         public CrossStoreContext(string dbConnectionString)
         {
             this.dbConnectionString = dbConnectionString;
@@ -20,7 +21,8 @@ namespace CrossStore.Infra.DataAccess.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(dbConnectionString);
+            //optionsBuilder.UseSqlServer(dbConnectionString);
+            optionsBuilder.UseSqlite(dbConnectionString);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace CrossStoreApp
         public App()
         {
             InitializeComponent();
-            Service = new ProductService(new AzureSqlServerProductsRepository());
+            Service = new ProductService(new SQLiteProductsRepository(Device.RuntimePlatform));
             MainPage = new NavigationPage(new MainPage());
         }
 

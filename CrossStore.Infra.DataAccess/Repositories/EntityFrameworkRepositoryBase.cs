@@ -9,7 +9,11 @@ namespace CrossStore.Infra.DataAccess.Repositories
 {
     public abstract class EntityFrameworkRepositoryBase<TKey, T> : IRepository<TKey,T> where T : TEntity<TKey>
     {
-        private DbContext db;
+        protected DbContext db;
+
+        protected EntityFrameworkRepositoryBase()
+        {
+        }
 
         protected EntityFrameworkRepositoryBase(DbContext db)
         {
