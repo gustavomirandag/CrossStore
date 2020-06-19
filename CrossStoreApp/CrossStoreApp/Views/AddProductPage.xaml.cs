@@ -1,4 +1,5 @@
-﻿using CrossStore.Domain.Entities;
+﻿using CrossStore.Application.Models.ViewModels;
+using CrossStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace CrossStoreApp.Views
                 return;
             }
                 
-            var product = new Product
+            var product = new ProductViewModel
             {
                 Name = name,
                 Photo = photo,

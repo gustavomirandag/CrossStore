@@ -1,4 +1,5 @@
-﻿using CrossStore.Domain.Entities;
+﻿using CrossStore.Application.Models.ViewModels;
+using CrossStore.Domain.Entities;
 using CrossStore.Domain.Services;
 using CrossStore.Infra.DataAccess.Repositories.Products;
 using System;
@@ -30,7 +31,7 @@ namespace CrossStoreApp.Views
             ListProducts(App.Service.GetAllProducts());
         }
 
-        public void ListProducts(IEnumerable<Product> products)
+        public void ListProducts(IEnumerable<ProductViewModel> products)
         {
             FlexLayoutProducts.Children.Clear();
 
@@ -67,7 +68,7 @@ namespace CrossStoreApp.Views
             }
         }
 
-        private async Task EditProductAsync(Product product)
+        private async Task EditProductAsync(ProductViewModel product)
         {
             await Navigation.PushModalAsync(new EditProductPage(product), true);
         }

@@ -1,4 +1,5 @@
-﻿using CrossStore.Domain.Services;
+﻿using CrossStore.Application.Services;
+using CrossStore.Domain.Services;
 using CrossStore.Infra.DataAccess.Repositories.Products;
 using CrossStoreApp.Views;
 using System;
@@ -9,12 +10,13 @@ namespace CrossStoreApp
 {
     public partial class App : Application
     {
-        public static ProductService Service { get; set; }
+        public static CrossPlatformAppService Service { get; set; }
 
         public App()
         {
             InitializeComponent();
-            Service = new ProductService(new SQLiteProductsRepository(Device.RuntimePlatform));
+            var domainService = new ProductService(new SQLiteProductsRepository(Device.RuntimePlatform));
+            Service = new CrossPlatformAppService(domainService);
             MainPage = new NavigationPage(new MainPage());
         }
 

@@ -1,4 +1,5 @@
-﻿using CrossStore.Domain.Entities;
+﻿using CrossStore.Application.Models.ViewModels;
+using CrossStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,16 @@ namespace CrossStoreApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProductPage : ContentPage
     {
-        private Product product;
+        private ProductViewModel product;
 
-        public EditProductPage(Product product)
+        public EditProductPage(ProductViewModel product)
         {
             InitializeComponent();
             this.product = product;
             FillFields(product);
         }
 
-        private void FillFields(Product product)
+        private void FillFields(ProductViewModel product)
         {
             EntryName.Text = product.Name;
             EntryPhoto.Text = product.Photo ?? "";

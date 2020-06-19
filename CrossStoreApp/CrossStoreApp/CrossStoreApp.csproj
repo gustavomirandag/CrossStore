@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossStore.Application\CrossStore.Application.csproj" />
     <ProjectReference Include="..\..\CrossStore.Domain\CrossStore.Domain.csproj" />
     <ProjectReference Include="..\..\CrossStore.Infra.DataAccess\CrossStore.Infra.DataAccess.csproj" />
   </ItemGroup>
